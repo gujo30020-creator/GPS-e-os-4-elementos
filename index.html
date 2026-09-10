@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Journey Game</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Fonte futurista da Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="container">
+        <!-- TELA 1: INÍCIO E NOME -->
+        <div class="card" id="home-screen">
+            <h1 class="glow-text">🤖 AI JOURNEY GAME</h1>
+            <p class="subtitle">Evolução, Lógica e Linguagem</p>
+            
+            <div class="input-group">
+                <label for="player-name">Digite seu nome ou apelido:</label>
+                <input type="text" id="player-name" placeholder="Ex: Player_01" autocomplete="off">
+            </div>
+
+            <h3>Escolha o Modo de Jogo:</h3>
+            <div class="mode-buttons">
+                <button class="btn-mode" onclick="startGame('english')">🇺🇸 Inglês (Linking Words)</button>
+                <button class="btn-mode" onclick="startGame('portuguese')">🇧🇷 Português (IA & Linguagem)</button>
+                <button class="btn-mode" onclick="startGame('math')">🔢 Matemática (Lógica & IA)</button>
+            </div>
+
+            <button class="btn-secondary" onclick="showRankingScreen()">🏆 Ver Placar Geral</button>
+        </div>
+
+        <!-- TELA 2: PARTIDA -->
+        <div class="card hidden" id="game-screen">
+            <div class="game-header">
+                <span id="mode-badge" class="badge">Modo</span>
+                <span id="timer-display" class="timer">⏱️ 00:00</span>
+            </div>
+
+            <div class="progress-bar-container">
+                <div id="progress-bar" class="progress-bar"></div>
+            </div>
+
+            <p id="question-count" class="step-text">Pergunta 1 de 10</p>
+            <h2 id="question-text" class="question-title">Carregando pergunta...</h2>
+
+            <div id="options-container" class="options-grid"></div>
+        </div>
+
+        <!-- TELA 3: RESULTADO DA PARTIDA -->
+        <div class="card hidden" id="result-screen">
+            <h1 class="glow-text">Fim de Jogo!</h1>
+            <p id="result-player-name" class="highlight-name">Jogador</p>
+
+            <div class="stats-box">
+                <div class="stat">
+                    <span class="stat-label">Pontuação</span>
+                    <span id="final-score" class="stat-value">0 / 10</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-label">Tempo Total</span>
+                    <span id="final-time" class="stat-value">0m 0s</span>
+                </div>
+            </div>
+
+            <button class="btn-primary" onclick="showRankingScreen()">🏆 Ver Placar e Ranking</button>
+            <button class="btn-secondary" onclick="resetToHome()">🔄 Jogar Novamente</button>
+        </div>
+
+        <!-- TELA 4: PLACAR / RANKING -->
+        <div class="card hidden" id="ranking-screen">
+            <h2 class="glow-text">🏆 Placar Geral</h2>
+
+            <div class="ranking-tabs">
+                <button class="tab-btn active" onclick="filterRanking('english')">🇺🇸 Inglês</button>
+                <button class="tab-btn" onclick="filterRanking('portuguese')">🇧🇷 Português</button>
+                <button class="tab-btn" onclick="filterRanking('math')">🔢 Matemática</button>
+            </div>
+
+            <div class="ranking-table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Pos.</th>
+                            <th>Jogador</th>
+                            <th>Pontos</th>
+                            <th>Tempo</th>
+                        </tr>
+                    </thead>
+                    <tbody id="ranking-table-body">
+                        <!-- Preenchido via JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+
+            <button class="btn-secondary" onclick="resetToHome()">⬅️ Voltar ao Início</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
